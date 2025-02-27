@@ -14,35 +14,13 @@ function stm_add_admin_page() {
 add_action('admin_menu', 'stm_add_admin_page');
 
 // Logs task creation details if WP_DEBUG is enabled.
-function log_task_creation($task_id, $task_details) {
+function stm_log_task_creation($task_id, $task_title) {
     if (defined('WP_DEBUG') && WP_DEBUG) {
-        $log_message = sprintf(
-            "[%s] Task Created: ID: %d, Details: %s\n",
-            date("Y-m-d H:i:s"),
-            $task_id,
-            json_encode($task_details)
-        );
-
-        error_log($log_message);
+        $timestamp = current_time('mysql'); // Get the current time
+        $message = "Task Added: {$task_title} | Task ID: {$task_id} | Time: {$timestamp} \n";
+        error_log($message);
     }
 }
-
-// Example usage
-$task_id = 123;
-$task_details = array('title' => 'Sample Task', 'status' => 'Pending');
-log_task_creation($task_id, $task_details);
-
-
-// // Logs task creation details if WP_DEBUG is enabled.
-// function stm_log_task_creation($task_id, $task_title) {
-//     if (defined('WP_DEBUG') && WP_DEBUG) {
-//         $timestamp = current_time('mysql'); // Get the current time
-//         $message = "Task Added: {$task_title} | Task ID: {$task_id} | Time: {$timestamp} \n";
-//         error_log($message);
-//     }
-// }
-
-
 
 // Hook into the action 'stm_task_added'
 add_action('stm_task_added', 'stm_log_task_creation', 10, 2);
