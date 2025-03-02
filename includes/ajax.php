@@ -26,8 +26,6 @@ function stm_add_task() {
     // Trigger the logging action
     do_action('stm_task_added', $task_id, $title);
 
-    delete_transient('stm_task_list'); // Clear the transient cache for tasks
-
     // Apply highlight if WooCommerce is active and the title contains 'order'
     $highlight = '';
     if (class_exists('WooCommerce') && stripos($title, 'order') !== false) {

@@ -16,9 +16,6 @@ function stm_create_table() {
 
     require_once ABSPATH . 'wp-admin/includes/upgrade.php';
     dbDelta($sql);
-
-    // Clear the transient cache to remove old task data
-    // delete_transient('stm_task_list');
 }
 
 // Deactivation Hook: Remove Table
