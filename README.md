@@ -102,3 +102,6 @@ This plugin successfully implements task management inside the WordPress admin d
 
     ![Completed Tasks Frontend](public/img/frontend-screenshot.jpg)
 
+2.  **Showing Debug.log after adding tasks:**
+
+    ![Showing Debug.log File](public/img/debug.log.jpg)
