@@ -1,6 +1,7 @@
 jQuery(document).ready(function($){
     // Handle form submission for adding a task
     $('#stm-add-task').on('submit', function(e){
+        //Prevents the default form submission behavior (which would reload the page) so we can handle the form submission using AJAX.
         e.preventDefault();
         
         var title = $('input[name="title"]').val().trim();
@@ -27,7 +28,7 @@ jQuery(document).ready(function($){
                         <td>${response.data.title}</td>
                         <td class="task-status">pending</td>
                         <td>${response.data.created_at}</td>
-                        <td><button class="mark-completed" data-id="${response.data.id}">Complete</button></td>
+                        <td><button class="mark-completed" data-id="${response.data.id}">Mark as Completed</button></td>
                     </tr>
                 `);
                 // Clear the form fields after adding a task
@@ -51,7 +52,7 @@ jQuery(document).ready(function($){
         }, function(response){
             if (response.success) {
                 button.closest('tr').find('.task-status').text('completed'); // Update UI
-                button.replaceWith('<span class="completed-text">✔ Completed</span>'); // Persist change
+                button.replaceWith('<span class="completed-text">✔ Marked as Completed</span>'); // Persist change
             } else {
                 alert('Error marking task as completed: ' + response.data.message);
             }

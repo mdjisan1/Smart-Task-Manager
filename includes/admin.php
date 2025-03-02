@@ -22,7 +22,7 @@ function stm_log_task_creation($task_id, $task_title) {
     }
 }
 
-// Hook into the action 'stm_task_added'
+// Hook into the action 'stm_task_added', priority + number of arguments
 add_action('stm_task_added', 'stm_log_task_creation', 10, 2);
 
 
@@ -87,9 +87,9 @@ function stm_admin_page() {
                     <td><?php echo esc_html($task->created_at); ?></td>
                     <td>
                         <?php if ($task->status !== 'completed') : ?>
-                            <button class="mark-completed" data-id="<?php echo esc_attr($task->id); ?>">Complete</button>
+                            <button class="mark-completed" data-id="<?php echo esc_attr($task->id); ?>">Mark as Completed</button>
                         <?php else : ?>
-                            <span class="completed-text">✔ Completed</span>
+                            <span class="completed-text">✔ Marked as Completed</span>
                         <?php endif; ?>
                     </td>
                 </tr>
